@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/9a4ee739-22f8-4129-8964-04479370e7b6)
+
 # Income Tax Calculator
 
 A simple web-based application that calculates income tax based on predefined tax slabs. This project uses **Python (Flask)** for the backend and **HTML/CSS/JavaScript** for the frontend.

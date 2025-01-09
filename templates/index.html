@@ -4,34 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Tax Calculator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script>
+
         async function calculateTax(event) {
-            event.preventDefault();
+            event.preventDefault(); 
             const income = document.getElementById('income').value;
-            const response = await fetch('/calculate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `income=${income}`
-            });
-            const result = await response.json();
-            const resultDiv = document.getElementById('result');
-            if (result.error) {
-                resultDiv.textContent = result.error;
-            } else {
-                resultDiv.textContent = `Income: ₹${result.income.toLocaleString()} | Tax: ₹${result.tax.toLocaleString()}`;
+
+            try {
+                const response = await fetch('/calculate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `income=${income}`
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('result');
+
+                if (result.error) {
+                    resultDiv.textContent = result.error;
+                } else {
+                    resultDiv.textContent = `Income: ₹${result.income.toLocaleString()} | Tax: ₹${result.tax.toLocaleString()}`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('result').textContent = "An error occurred. Please try again.";
             }
         }
     </script>
 </head>
 <body>
     <h1>Income Tax Calculator</h1>
+    
     <form onsubmit="calculateTax(event)">
         <label for="income">Enter your annual income (₹):</label>
-        <input type="text" id="income" name="income" required>
+        <input type="text" id="income" name="income" placeholder="e.g., 500000" required>
         <button type="submit">Calculate Tax</button>
     </form>
-    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <div id="result"></div>
 </body>
 </html>

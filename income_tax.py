@@ -5,12 +5,12 @@ def calculate_income_tax(income):
     :param income: Annual income of the user.
     :return: Calculated income tax.
     """
-    # Define tax slabs as (limit, rate)
+
     tax_slabs = [
-        (250000, 0),          # Up to ₹2,50,000: No tax
-        (500000, 0.05),       # ₹2,50,001 to ₹5,00,000: 5%
-        (1000000, 0.2),       # ₹5,00,001 to ₹10,00,000: 20%
-        (float('inf'), 0.3)   # Above ₹10,00,000: 30%
+        (250000, 0),          
+        (500000, 0.05),      
+        (1000000, 0.2),       
+        (float('inf'), 0.3)  
     ]
     
     tax = 0
@@ -35,7 +35,6 @@ def main():
         # Input: Annual income
         annual_income = input("Enter your annual income: ₹").replace(",", "")
         
-        # Validate and convert income
         if not annual_income.replace('.', '').isdigit():
             raise ValueError("Invalid input. Please enter a valid numeric value.")
         
@@ -45,10 +44,8 @@ def main():
             print("Income cannot be negative. Please enter a valid amount.")
             return
         
-        # Calculate tax
         tax_amount = calculate_income_tax(annual_income)
         
-        # Output: Tax details
         print(f"\nYour annual income: ₹{annual_income:,.2f}")
         print(f"Income tax payable: ₹{tax_amount:,.2f}")
     except ValueError as e:

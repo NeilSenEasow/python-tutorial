@@ -1,0 +1,5 @@
+num = input("Enter a list of numbers separated by spaces: ")
+num = list(map(int, num.split()))
+print("The list:",num)
+num.sort(reverse=True)  
+print("The third largest element is : ",num[2])
